@@ -32,11 +32,9 @@ var WASlider = (function() {
             dot.addEventListener('click', function() { goTo(i); });
         });
 
-        // Pause autoplay on hover
         track.addEventListener('mouseenter', stop);
         track.addEventListener('mouseleave', start);
 
-        // Touch/swipe support
         var touchStartX = 0;
         track.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
         track.addEventListener('touchend', function(e) {
@@ -56,22 +54,15 @@ var WASlider = (function() {
         if (dots[currentIndex]) dots[currentIndex].classList.add('active');
     }
 
-    function step(dir) {
-        stop();
-        goTo(currentIndex + dir);
-        start();
-    }
+    function step(dir) { stop(); goTo(currentIndex + dir); start(); }
 
     function start() {
         stop();
-        if (slides && slides.length > 1) {
+        if (slides && slides.length > 1)
             timer = setInterval(function() { goTo(currentIndex + 1); }, intervalMs);
-        }
     }
 
-    function stop() {
-        if (timer) { clearInterval(timer); timer = null; }
-    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
 
     return { init: init };
 })();
@@ -85,24 +76,19 @@ var WAMobileMenu = (function() {
         menu     = document.getElementById('wowarg-mobile-menu');
         overlay  = document.getElementById('wowarg-mobile-overlay');
         closeBtn = document.getElementById('wowarg-mobile-close');
-
         if (!toggle || !menu) return;
 
-        // Remove hidden attribute to allow CSS transitions to work
         menu.removeAttribute('hidden');
 
         toggle.addEventListener('click', open);
         if (closeBtn) closeBtn.addEventListener('click', close);
         if (overlay)  overlay.addEventListener('click', close);
 
-        // Accordion for mobile sub-menus
-        var parents = menu.querySelectorAll('.wowarg-mobile-parent');
-        parents.forEach(function(parent) {
+        menu.querySelectorAll('.wowarg-mobile-parent').forEach(function(parent) {
             parent.addEventListener('click', function() {
                 var sub = this.nextElementSibling;
                 if (!sub || !sub.classList.contains('wowarg-mobile-sub')) return;
                 var isOpen = sub.style.display === 'block';
-                // Close all
                 menu.querySelectorAll('.wowarg-mobile-sub').forEach(function(s) { s.style.display = 'none'; });
                 menu.querySelectorAll('.wowarg-mobile-parent i').forEach(function(i) { i.style.transform = ''; });
                 if (!isOpen) {
@@ -113,9 +99,7 @@ var WAMobileMenu = (function() {
             });
         });
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') close();
-        });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
     }
 
     function open() {
@@ -140,41 +124,30 @@ var WAMobileMenu = (function() {
 /* --- Sticky Header ---------------------------------------------------- */
 var WAHeader = (function() {
     var header;
-
     function init() {
         header = document.getElementById('header');
         if (!header) return;
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
+        window.addEventListener('scroll', function() {
+            header.classList.toggle('scrolled', (window.pageYOffset || document.documentElement.scrollTop) > 60);
+        }, { passive: true });
     }
-
-    function onScroll() {
-        var y = window.pageYOffset || document.documentElement.scrollTop;
-        header.classList.toggle('scrolled', y > 60);
-    }
-
     return { init: init };
 })();
 
 /* --- Back to Top ------------------------------------------------------ */
 var WABackTop = (function() {
     var btn;
-
     function init() {
         btn = document.getElementById('back-to-top');
         if (!btn) return;
-        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('scroll', function() {
+            btn.classList.toggle('visible', (window.pageYOffset || document.documentElement.scrollTop) > 300);
+        }, { passive: true });
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-
-    function onScroll() {
-        var y = window.pageYOffset || document.documentElement.scrollTop;
-        btn.classList.toggle('visible', y > 300);
-    }
-
     return { init: init };
 })();
 
@@ -187,59 +160,43 @@ var WACountdown = (function() {
         var target = new Date(targetDate).getTime();
         if (isNaN(target)) return;
 
-        function tick() {
-            var diff = target - Date.now();
-            if (diff <= 0) {
-                el.innerHTML = '<span class="wa-countdown-ended">¡En curso!</span>';
-                return;
-            }
-            var d = Math.floor(diff / 86400000);
-            var h = Math.floor((diff % 86400000) / 3600000);
-            var m = Math.floor((diff % 3600000) / 60000);
-            var s = Math.floor((diff % 60000) / 1000);
-            el.innerHTML =
-                block(d, 'd') + block(pad(h), 'h') + block(pad(m), 'm') + block(pad(s), 's');
-        }
-
+        function pad(n) { return n < 10 ? '0' + n : '' + n; }
         function block(val, unit) {
             return '<span class="wa-countdown-block"><b>' + val + '</b><span>' + unit + '</span></span>';
         }
-
-        function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
+        function tick() {
+            var diff = target - Date.now();
+            if (diff <= 0) { el.innerHTML = '<span class="wa-countdown-ended">¡En curso!</span>'; return; }
+            var d = Math.floor(diff / 86400000);
+            var h = Math.floor((diff % 86400000) / 3600000);
+            var m = Math.floor((diff % 3600000)  / 60000);
+            var s = Math.floor((diff % 60000)    / 1000);
+            el.innerHTML = block(d, 'd') + block(pad(h), 'h') + block(pad(m), 'm') + block(pad(s), 's');
+        }
         tick();
         setInterval(tick, 1000);
     }
-
     return { init: init };
 })();
 
-/* --- News loader ------------------------------------------------------ */
-var WANews = (function() {
-    function loadRecent(containerId, count) {
-        var el = document.getElementById(containerId);
-        if (!el) return;
-        var base = (typeof Config !== 'undefined' ? Config.URL : '/');
-        fetch(base + 'news?limit=' + (count || 3) + '&format=json')
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-                if (!data || !data.length) {
-                    el.innerHTML = '<p class="text-muted small">Sin noticias recientes.</p>';
-                    return;
-                }
-                var html = '<ul style="list-style:none;padding:0;margin:0;">';
-                data.slice(0, count || 3).forEach(function(n) {
-                    html += '<li style="margin-bottom:8px;"><a href="' + base + 'news/' + n.id + '" style="color:var(--wa-blue)">' + n.title + '</a></li>';
-                });
-                html += '</ul>';
-                el.innerHTML = html;
-            })
-            .catch(function() {
-                el.innerHTML = '<p class="text-muted small">No se pudieron cargar las noticias.</p>';
-            });
+/* --- Custom JS (realm switcher used by sidebox_status) --------------- */
+var CustomJS = {
+    switchRealm: function(btn, targetSelector) {
+        var container = btn.closest('.wowarg-sidebox-body') || btn.parentNode.parentNode;
+        // Hide all realm panels
+        container.querySelectorAll('[id^="realm_"]').forEach(function(panel) {
+            panel.style.display = 'none';
+        });
+        // Deactivate all dots
+        container.querySelectorAll('.wowarg-realm-dot').forEach(function(dot) {
+            dot.classList.remove('active');
+        });
+        // Show target
+        var target = document.querySelector(targetSelector);
+        if (target) target.style.display = '';
+        btn.classList.add('active');
     }
-    return { loadRecent: loadRecent };
-})();
+};
 
 /* --- Init ------------------------------------------------------------- */
 $(document).ready(function() {

@@ -21,14 +21,43 @@ $lang['nav_about']           = 'About';
 $lang['nav_download']        = 'Download';
 $lang['nav_connect']         = 'Connect';
 
-// Server status
-$lang['server_status']       = 'Server Status';
-$lang['server_online']       = 'Online';
-$lang['server_offline']      = 'Offline';
-$lang['server_players']      = 'Players online';
-$lang['server_realm']        = 'Realm';
-$lang['server_uptime']       = 'Uptime';
-$lang['server_expansion']    = 'WotLK 3.3.5a';
+// Global server status
+$lang['global_online']       = 'Online';
+$lang['global_offline']      = 'Offline';
+$lang['global_user_avatar']  = 'Avatar of %s';
+$lang['view_profile']        = 'View profile';
+
+// Sidebox: Server Status
+$lang['server_status']            = 'Server Status';
+$lang['server_players']           = 'Players online';
+$lang['server_realm']             = 'Realm';
+$lang['server_uptime']            = 'Uptime';
+$lang['server_expansion']         = 'WotLK 3.3.5a';
+$lang['sidebox_status_onlineplayers']  = 'players online';
+$lang['sidebox_status_setrealmlist']   = 'Realmlist:';
+
+// Sidebox: Top PvP
+$lang['sidebox_pvp_N']            = '#';
+$lang['sidebox_pvp_charname']     = 'Character';
+$lang['sidebox_pvp_charclass']    = 'Class';
+$lang['sidebox_pvp_charkills']    = 'Kills';
+
+// News
+$lang['news_latest_news']    = 'Latest News from %s';
+$lang['news_send_pm']        = 'Send private message to %s';
+$lang['news_posted_by']      = 'Posted by';
+$lang['news_read_more']      = 'Read More';
+$lang['news_comments']       = 'Comments';
+$lang['news_no_news']        = 'No news yet.';
+
+// UCP
+$lang['ucp_title']           = 'Control Panel';
+$lang['ucp_characters']      = 'Characters';
+$lang['ucp_settings']        = 'Settings';
+$lang['ucp_security']        = 'Security';
+$lang['ucp_transfer']        = 'Transfer';
+$lang['ucp_rename']          = 'Rename';
+$lang['ucp_customize']       = 'Customize';
 
 // Rankings
 $lang['ranking_player']      = 'Player';
@@ -40,15 +69,6 @@ $lang['ranking_class']       = 'Class';
 $lang['ranking_race']        = 'Race';
 $lang['ranking_level']       = 'Level';
 $lang['ranking_arena']       = 'Arena';
-
-// UCP
-$lang['ucp_title']           = 'Control Panel';
-$lang['ucp_characters']      = 'Characters';
-$lang['ucp_settings']        = 'Settings';
-$lang['ucp_security']        = 'Security';
-$lang['ucp_transfer']        = 'Transfer';
-$lang['ucp_rename']          = 'Rename';
-$lang['ucp_customize']       = 'Customize';
 
 // Buttons
 $lang['btn_submit']          = 'Submit';
@@ -75,12 +95,6 @@ $lang['footer_connect_step1']      = 'Download the WoW 3.3.5a client';
 $lang['footer_connect_step2']      = 'Edit the realmlist';
 $lang['footer_connect_step3']      = 'Register for free and start playing';
 $lang['footer_legal']              = 'World of Warcraft(c) and Blizzard Entertainment(c) are registered trademarks of Blizzard Entertainment, Inc. This site is not affiliated with or endorsed by Blizzard Entertainment(c).';
-
-// News
-$lang['news_posted_by']      = 'Posted by';
-$lang['news_read_more']      = 'Read More';
-$lang['news_comments']       = 'Comments';
-$lang['news_no_news']        = 'No news yet.';
 
 // Slider
 $lang['slider_next']         = 'Next';
