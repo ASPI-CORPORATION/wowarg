@@ -42,3 +42,4 @@ $lang['yesterdayKills'] = "Yesterday kills";
 $lang['kills'] = "Total kills";
 $lang['honor'] = "Honor points";
 $lang['arena'] = "Arena points";
+$lang['health'] = "Health";

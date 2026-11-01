@@ -1,0 +1,186 @@
+/* =======================================================================
+   WoW Argentina Theme - custom.css
+   Bootstrap 5 dark overrides + UCP/Character module styling
+   ======================================================================= */
+
+/* -----------------------------------------------------------------------
+   Bootstrap 5 — Dark Table Overrides
+   ----------------------------------------------------------------------- */
+.table {
+    --bs-table-bg:            transparent;
+    --bs-table-color:         var(--wa-text);
+    --bs-table-border-color:  var(--wa-border);
+    --bs-table-striped-bg:    rgba(255,255,255,0.04);
+    --bs-table-striped-color: var(--wa-text);
+    --bs-table-hover-bg:      rgba(116,172,223,0.08);
+    --bs-table-hover-color:   var(--wa-white);
+    color: var(--wa-text);
+}
+
+.table > :not(caption) > * > * {
+    background-color: var(--bs-table-bg);
+    color:            var(--bs-table-color, var(--wa-text));
+    border-bottom-color: var(--bs-table-border-color);
+}
+
+/* -----------------------------------------------------------------------
+   Bootstrap 5 — Dark List-Group Overrides (UCP Navigation)
+   ----------------------------------------------------------------------- */
+.list-group-item {
+    background-color: transparent !important;
+    border-color:     var(--wa-border) !important;
+    color:            var(--wa-text) !important;
+}
+
+.list-group-item-action {
+    color: var(--wa-text) !important;
+}
+
+.list-group-item-action:hover,
+.list-group-item-action:focus {
+    background-color: rgba(116,172,223,0.12) !important;
+    color:            var(--wa-white) !important;
+    border-color:     var(--wa-border-gold) !important;
+}
+
+.list-group-item-action.active {
+    background-color: var(--wa-gold) !important;
+    border-color:     var(--wa-gold-dark) !important;
+    color:            var(--wa-dark) !important;
+    font-weight: 600;
+}
+
+/* -----------------------------------------------------------------------
+   UCP — User Info Table
+   ----------------------------------------------------------------------- */
+.user-table > tbody > tr > td {
+    padding:        0.6rem 0.75rem;
+    vertical-align: middle;
+    border-color:   var(--wa-border) !important;
+    color:          var(--wa-text);
+}
+
+/* Edit / View action links — styled as small outlined buttons */
+.user-table td:last-child a,
+.characters-table td:last-child a {
+    color:         var(--wa-blue);
+    font-size:     0.82rem;
+    border:        1px solid var(--wa-border);
+    padding:       2px 12px;
+    border-radius: var(--wa-radius);
+    white-space:   nowrap;
+    transition:    var(--wa-transition);
+}
+
+.user-table td:last-child a:hover,
+.characters-table td:last-child a:hover {
+    background-color: var(--wa-blue);
+    color:            var(--wa-dark);
+    border-color:     var(--wa-blue);
+}
+
+/* -----------------------------------------------------------------------
+   UCP — Characters Table (.nice_table)
+   ----------------------------------------------------------------------- */
+.nice_table {
+    width:           100%;
+    color:           var(--wa-text);
+    border-collapse: collapse;
+}
+
+.nice_table th,
+.nice_table td {
+    padding:        0.5rem 0.75rem;
+    vertical-align: middle;
+    border-bottom:  1px solid var(--wa-border);
+}
+
+.nice_table thead th {
+    color:         var(--wa-gold);
+    font-family:   var(--wa-font-title);
+    border-bottom: 2px solid var(--wa-border-gold);
+    background:    transparent;
+}
+
+.nice_table tbody tr:hover td {
+    background-color: rgba(116,172,223,0.05);
+}
+
+/* -----------------------------------------------------------------------
+   UCP — Money Display
+   ----------------------------------------------------------------------- */
+.moneygold {
+    color:       #FFD700;
+    font-weight: 600;
+    margin-right: 2px;
+}
+.moneygold::after  { content: "g"; color: var(--wa-text-muted); font-size: 0.72em; margin-left:1px; }
+
+.moneysilver {
+    color:       #C0C0C0;
+    font-weight: 600;
+    margin-right: 2px;
+}
+.moneysilver::after { content: "p"; color: var(--wa-text-muted); font-size: 0.72em; margin-left:1px; }
+
+.moneycopper {
+    color:       #B87333;
+    font-weight: 600;
+}
+.moneycopper::after { content: "c"; color: var(--wa-text-muted); font-size: 0.72em; margin-left:1px; }
+
+/* -----------------------------------------------------------------------
+   UCP — Mobile Navigation (horizontal scroll on small screens)
+   ----------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+    .col-lg-4.py-5 {
+        padding-top:    1.5rem !important;
+        padding-bottom: 0 !important;
+    }
+    .col-lg-8.py-lg-5 {
+        padding-top: 1.5rem !important;
+    }
+    .list-group {
+        display:        flex;
+        flex-direction: row;
+        flex-wrap:      wrap;
+        gap:            0.3rem;
+    }
+    .list-group .list-group-item {
+        flex:          0 0 auto;
+        border-radius: var(--wa-radius) !important;
+        border:        1px solid var(--wa-border) !important;
+        padding:       0.3rem 0.85rem;
+        font-size:     0.83rem;
+    }
+}
+
+/* -----------------------------------------------------------------------
+   Character Profile — Attributes Table
+   Overrides Bootstrap striped/hover for dark background
+   ----------------------------------------------------------------------- */
+#attributes .table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(255,255,255,0.04);
+    color:            var(--wa-text);
+}
+
+#attributes .table-hover > tbody > tr:hover > * {
+    background-color: rgba(116,172,223,0.08);
+    color:            var(--wa-white);
+}
+
+/* -----------------------------------------------------------------------
+   Character Profile — Progress Bars Label
+   ----------------------------------------------------------------------- */
+#bars .text-upper {
+    font-family: var(--wa-font-title);
+    font-size:   0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--wa-text-muted);
+}
+
+#bars .progress {
+    background-color: rgba(255,255,255,0.08);
+    border-radius: 2px;
+}

@@ -40,6 +40,7 @@ $lang['data_tip_vote'] = "Gana Puntos de Voto Votando por el Servidor";
 $lang['data_tip_donate'] = "Gana Puntos de Donación Donando al Servidor";
 
 $lang['edit'] = "Editar";
+$lang['view_character'] = "Ver";
 
 // Avatar
 $lang['change_avatar'] = "Cambiar avatar";
@@ -91,4 +92,3 @@ $lang['amount'] = 'Cantidad';
 $lang['ip'] = 'IP';
 $lang['today'] = 'Hoy';
 $lang['yesterday'] = 'Ayer';
-

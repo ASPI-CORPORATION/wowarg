@@ -40,6 +40,7 @@ $lang['data_tip_vote'] = "Earn Vote Points by Voting for the Server";
 $lang['data_tip_donate'] = "Earn Donation Points by Donating to the Server";
 
 $lang['edit'] = "Edit";
+$lang['view_character'] = "View";
 
 // Avatar
 $lang['change_avatar'] = "Change avatar";

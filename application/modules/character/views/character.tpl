@@ -65,7 +65,7 @@
 			{if $stats.maxhealth && $stats.maxhealth != "Unknown"}
 				<div id="health" class="">
 					<div class="d-flex justify-content-between">
-					<span class="text-upper h4">Health</span>
+					<span class="text-upper h4">{lang("health", "character")}</span>
 					<span class="text-upper h4">{$stats.maxhealth}</span>
 					</div>
 					<div class="progress" style="height: 5px;">
