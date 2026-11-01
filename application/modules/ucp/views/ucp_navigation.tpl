@@ -11,7 +11,7 @@
         </a>
 
     </div>
-    <div class="section-header">User Control Panel</div>
+    <div class="section-header">{lang("user_panel", "ucp")}</div>
     <div class="section-body">
         {foreach $ucp_menus as $group => $menusGroup}
             <div class="list-group mt-3">
